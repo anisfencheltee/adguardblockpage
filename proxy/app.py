@@ -5,6 +5,8 @@ import requests
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from flask import Flask, jsonify, request
+import logging
+import sys
 
 app = Flask(__name__)
 
@@ -23,8 +25,14 @@ EMAIL_TO = os.getenv("EMAIL_TO")
 
 HOME_DASHBOARD_URL = os.getenv("HOME_DASHBOARD_URL") 
 
-# --- Endpoint 1: Configuration for Frontend ---
 
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[logging.StreamHandler(sys.stdout)]
+)
+
+# --- Endpoint 1: Configuration for Frontend ---
 @app.route('/config')
 def get_config():
     """Returns language and dashboard configuration to the frontend."""
@@ -44,7 +52,7 @@ def get_last_block():
 
     auth_header = {"Authorization": f"Basic {base64.b64encode(USER_PASS.encode()).decode()}"}
     query_params = {"limit": 1, "response_status": "filtered"}
-    print(f"Versuche Verbindung zu: {ADGUARD_URL} mit User {USER_PASS}")
+    logging.info(f"Versuche Verbindung zu: {ADGUARD_URL} mit User {USER_PASS}")
     try:
         response = requests.get(ADGUARD_URL, headers=auth_header, params=query_params, timeout=5)
         response.raise_for_status()
@@ -57,9 +65,9 @@ def get_last_block():
                 "filter": entry.get('filter_id', 'System Default')
             })
     except Exception as e:
-        print(f"❌ Fehler: Status Code {response.status_code}")
-        print(f"Antwort vom Server: {response.text}")
-        print(e)
+        logging.error(f"❌ Fehler: Status Code {response.status_code}")
+        logging.error(f"Antwort vom Server: {response.text}")
+        logging.error(e)
         return jsonify({"error": "Failed to connect to AdGuard API"}), 500
         
     return jsonify({"domain": "No recent block found"})
