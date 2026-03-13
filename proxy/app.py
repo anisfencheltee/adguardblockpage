@@ -55,6 +55,8 @@ def get_last_block():
         "search": guest_ip
     }
 
+    logging.info(f"Frage AdGuard nach letztem Block für IP: {guest_ip}")
+    
     try:
         response = requests.get(ADGUARD_URL, headers=auth_header, params=query_params, timeout=5)
         response.raise_for_status()
