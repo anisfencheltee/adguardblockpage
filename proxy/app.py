@@ -30,13 +30,14 @@ def get_config():
 # --- Endpoint 2: Fetch last block from AdGuard ---
 @app.route('/last-block')
 def get_last_block():
+
     """Queries the AdGuard API for the most recent filtered entry."""
     if not ADGUARD_URL or not USER_PASS:
         return jsonify({"error": "Configuration missing"}), 500
 
     auth_header = {"Authorization": f"Basic {base64.b64encode(USER_PASS.encode()).decode()}"}
     query_params = {"limit": 1, "response_status": "filtered"}
-    
+    print(f"Versuche Verbindung zu: {ADGUARD_URL} mit User {USER_PASS}")
     try:
         response = requests.get(ADGUARD_URL, headers=auth_header, params=query_params, timeout=5)
         response.raise_for_status()
@@ -49,6 +50,9 @@ def get_last_block():
                 "filter": entry.get('filter_id', 'System Default')
             })
     except Exception as e:
+        print(f"❌ Fehler: Status Code {response.status_code}")
+        print(f"Antwort vom Server: {response.text}")
+        print(e)
         return jsonify({"error": "Failed to connect to AdGuard API"}), 500
         
     return jsonify({"domain": "No recent block found"})
