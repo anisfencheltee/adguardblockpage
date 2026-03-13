@@ -13,7 +13,7 @@ ADGUARD_URL_ENV = os.getenv("ADGUARD_URL")
 ADGUARD_URL_BASE = ADGUARD_URL_ENV.split('/control/')[0] if '/control/' in ADGUARD_URL_ENV else ADGUARD_URL_ENV
 USER_PASS = os.getenv("ADGUARD_USER_PASS")
 LANGUAGE = os.getenv("LANGUAGE", "en").lower()
-HOME_DASHBOARD_URL = os.getenv("HOME_DASHBOARD_URL") 
+HOME_DASHBOARD_URL = os.getenv("DASHBOARD_URL") 
 
 SKIP_DOMAINS_RAW = os.getenv("SKIP_DOMAINS", "")
 SKIP_DOMAINS = [d.strip().lower() for d in SKIP_DOMAINS_RAW.split(",") if d.strip()]
