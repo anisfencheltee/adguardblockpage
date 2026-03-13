@@ -50,10 +50,14 @@ def get_last_block():
         if data.get('data'):
             for entry in data['data']:
                 domain = entry['question']['name'].lower()
-                                
+                
+                # Interne Domains überspringen
                 if any(skip_d in domain for skip_d in SKIP_DOMAINS):
                     continue
-                              
+                
+                # --- PURISTISCHER TEIL ---
+                # Wir nehmen EXAKT das, was AdGuard als filter_id liefert.
+                # Wenn dort "List 17..." steht, wird auch das angezeigt.
                 filter_info = entry.get('filter_id')
                 
                 # Falls das Feld leer ist (kommt selten vor), fallback auf 'System Default'
