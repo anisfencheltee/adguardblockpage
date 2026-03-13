@@ -10,9 +10,10 @@
     "veto_error": "Fehler beim Senden.",
     "unknown_request": "Unbekannte Anfrage",
     "automated_filter": "Automatischer Sicherheitsfilter",
+    "custom_filter": "Benutzerdefinierte Filterregel",
     "filtered_by": "Gefiltert durch",
     "offline_mode": "Offline-Modus",
-    "api_error": "Verbindung zum API-Proxy fehlgeschlagen."
+    "api_error": "Verbindung zum API-Proxy fehlgeschlagen."    
   },
   "en": {
     "title": "Safe at Home.",
@@ -25,6 +26,7 @@
     "veto_error": "Error sending request.",
     "unknown_request": "Unknown request",
     "automated_filter": "Automated security filter",
+    "custom_filter": "Custom filtering rule",
     "filtered_by": "Filtered by",
     "offline_mode": "Offline mode",
     "api_error": "Could not connect to the API proxy."
@@ -40,6 +42,7 @@
     "veto_error": "Ошибка при отправке.",
     "unknown_request": "Неизвестный запрос",
     "automated_filter": "Автоматический фильтр безопасности",
+    "custom_filter": "Пользовательское правило фильтрации",
     "filtered_by": "Фильтр:",
     "offline_mode": "Автономный режим",
     "api_error": "Не удалось подключиться к API-прокси."
@@ -55,6 +58,7 @@
     "veto_error": "Error al enviar.",
     "unknown_request": "Solicitud desconocida",
     "automated_filter": "Filtro de seguridad automático",
+    "custom_filter": "Regla de filtrado personalizada",
     "filtered_by": "Filtrado por",
     "offline_mode": "Modo offline",
     "api_error": "No se pudo conectar con el proxy de la API."
@@ -70,6 +74,7 @@
     "veto_error": "Erreur lors de l'envoi.",
     "unknown_request": "Requête inconnue",
     "automated_filter": "Filtre de sécurité automatique",
+    "custom_filter": "Règle de filtrage personnalisée",
     "filtered_by": "Filtré par",
     "offline_mode": "Mode hors-ligne",
     "api_error": "Échec de la connexion au proxy API."

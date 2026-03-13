@@ -40,6 +40,7 @@ def fetch_filter_names():
         data = response.json()
         
         # Mappt ID auf den Klarnamen
+        filter_name_map[0] = 'custom';
         for filter_list in data.get('filters', []):
             filter_name_map[str(filter_list['id'])] = filter_list['name']
         logging.info(f"✅ {len(filter_name_map)} Filternamen von AdGuard geladen.")
@@ -80,8 +81,7 @@ def get_last_block():
                 
                 # filterId aus deinem JSON-DUMP
                 raw_filter_id = str(entry.get('filterId', '0'))
-                filter_name = filter_name_map.get(raw_filter_id, f"List {raw_filter_id}")
-                
+                filter_name = filter_name_map.get(raw_filter_id, f"List {raw_filter_id}")                
                 blocked_rule = entry.get('rule', 'System Default')
                 reason = entry.get('reason', 'Filtered')
 
