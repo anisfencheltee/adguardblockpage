@@ -43,6 +43,9 @@ def get_last_block():
     guest_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
     guest_ip = guest_ip.split(',')[0].strip()
     
+    # DEBUG: Zeige uns die geladene Skip-Liste
+    logging.info(f"Aktuelle Skip-Liste: {SKIP_DOMAINS}")
+
     auth_header = {"Authorization": f"Basic {base64.b64encode(USER_PASS.encode()).decode()}"}
     
     # Wir erhöhen das Limit etwas, um genug Puffer für die Skip-Liste zu haben
